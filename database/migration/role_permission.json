@@ -1,0 +1,1 @@
+{"table_name":"role_permission","form_type":"alter","table_field":[{"Field":"role_id","Type":"varchar(255)","Null":"YES","Key":"","Default":"","Extra":""},{"Field":"role_permission","Type":"longtext","Null":"YES","Key":"","Default":"","Extra":""}],"temp_field":["role_id varchar(255) ","role_permission longtext "]}

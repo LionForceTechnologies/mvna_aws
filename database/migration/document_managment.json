@@ -1,0 +1,1 @@
+{"table_name":"document_managment","form_type":"alter","table_field":[{"Field":"name","Type":"varchar(255)","Null":"YES","Key":"","Default":"","Extra":""},{"Field":"docs","Type":"varchar(255)","Null":"YES","Key":"","Default":"","Extra":""}],"temp_field":["name varchar(255) ","docs varchar(255) "]}

@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../public/js/angular-ui-notification/dist/angular-ui-notification.min.css">
+
+<style>
+  .table-bordered {
+    background-color: black!important;
+    color: white!important;
+}
+</style>
+</head>
+
+<body ng-app="myApp">
+
+	<h4 class="text-center mt-1" class="btn btn-secondary">Sharpening your Axe v1.0 Giri Test<span>&#128521;</span></h4>
+
+  <div class="container py-5" ng-controller="MigrationController">
+
+    <div class="alert alert-success" ng-if="message" role="alert">
+      <p class="mb-0">{{message}}</p>
+    </div>
+
+    <form>
+      <div class="form-row">
+        <div class="col-md-3 mb-3">
+          <label for="validationServer01">Create Table Name</label>
+          <input type="text" class="form-control" ng-disabled="table.form_type !='create'" ng-model="table.table_name" id="validationServer01"
+            placeholder="Create Table Name" >      
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="validationServer02">Alter Table Name</label>
+          <select class="form-control" ng-model="d" ng-change="alter_table_colums(d)"
+            ng-options="item.fullpath as item.filepath for item in show_table">
+            <option selected value=''>-- Selected One --</option>
+          </select>
+        </div>      
+        <div class="col-md-3 mb-3">
+          <label for="validationServer02">Drop Table Name</label>
+          <select class="form-control" ng-model="drop" ng-change="show_table_drop(drop)"
+            ng-options="item.filename as item.filename for item in show_table">
+            <option selected value=''>-- Selected One --</option>
+          </select>
+        </div>      
+        <div class="col-md-3 my-3 p-3">
+              <button class="btn btn-primary" ng-disabled="table.table_field.length == 1" ng-click="form_store(table)" type="submit">Create (or) Alter</button>
+        </div>      
+      </div>
+      <div class="form-row">
+
+        <div class="col-md-12  col-lg-12 table-responsive-md table-responsive-lg">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <!-- <th scope="col">#</th> -->
+                <th scope="col">Field</th>
+                <th scope="col">Type</th>
+                <th scope="col">Nullable?</th>
+                <!-- <th scope="col">Key</th> -->
+                <!-- <th scope="col">Default</th> -->
+                <!-- <th scope="col">Extra</th> -->
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  ng-repeat="v in table.table_field">
+                <!-- <th scope="row">{{$index+1}}</th> -->
+                <td>
+                  <input type="text" class="form-control " ng-model="v.Field" placeholder="Field">
+                </td>
+                <td>
+                  <select class="form-control" ng-model="v.Type" >
+                    <option selected value=''>-- Selected One --</option>
+                    <option value='varchar(255)'>Varchar(255)</option>
+                    <option value='int(11)'>Int(11)</option>
+                    <option value='longtext'>Longtext</option>
+                    <option value='date'>Date</option>
+                    <option value='datetime'>DateTime</option>
+                  </select>
+                </td>
+                <td>
+                    <select class="form-control" ng-model="v.Null">
+                      <option selected value=''>-- Selected One --</option>
+                      <option value='YES'>Yes</option>
+                      <option value='NO'>No</option>
+                    </select>
+                </td>
+                <!-- <td>
+                  <input type="text" class="form-control " ng-model="v.Key" >
+                </td>
+                <td>
+                  <input type="text" class="form-control " ng-model="v.Default" >
+                </td>
+                <td>
+                  <input type="text" class="form-control " ng-model="v.Extra" >
+                </td> -->
+                <td>
+                  <!-- <div class="btn-group" role="group" aria-label="Third group">
+                    <button type="button" ng-click="addTable($index)" class="btn btn-success">
+                      <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" ng-click="reMove($index)" ng-disabled="table.table_field.length == 1"  class="btn btn-danger">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                  </div> -->
+                  <div class="btn-group pl-0 w-auto">
+                    <div class="btn btn-outline-secondary btn-sm mr-1" data-toggle="tooltip" title="Insert 1 above" ng-click="add_new_field_up($index)">
+                      <i class="fa fa-hand-o-up" aria-hidden="true"></i> <i class="fa fa-plus" aria-hidden="true"></i>
+                    </div>
+                    <div class="btn btn-outline-secondary btn-sm mr-1" data-toggle="tooltip" title="Insert 1 below" ng-click="add_new_field_down($index)">
+                      <i class="fa fa-hand-o-down" aria-hidden="true"></i> <i class="fa fa-plus" aria-hidden="true"></i>
+                    </div>
+                    <div  class="btn btn-outline-danger btn-sm mr-1" data-toggle="tooltip" title="Delete row" ng-click="reMove($index)" ng-disabled="table.table_field.length == 1">
+                      <i class="fa fa-hand-scissors-o" aria-hidden="true"></i> <i class="fa fa-trash" aria-hidden="true"></i>
+                    </div>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <!-- <button class="btn btn-primary" ng-click="form_store(table)" type="submit">Submit form</button> -->
+    </form>
+
+
+  </div>
+
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+  <script src="../public/angular/migration.js"></script>
+  <script src="../public/js/angular-ui-notification/dist/angular-ui-notification.js"></script> 
+
+</body>
+
+</html>

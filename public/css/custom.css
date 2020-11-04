@@ -1,0 +1,307 @@
+body {
+  /* background: #e1ecf2; */
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: normal;
+  background: #fafafa;
+  color: gray;
+}
+.wrapper {
+  display: block !important;
+}
+
+.wrapper .sidebar {
+  /* background: #2e4ead;
+  width: 80px;  
+  transition: all 0.3s ease-in;
+  height: 100%;
+  box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15); */
+  min-width: 250px;
+  max-width: 250px;
+  background: #866ec7;
+  color: #fff;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  position: fixed !important;
+  height: 100%;
+  z-index: 9999;
+}
+
+.wrapper .sidebar .custom-menu {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    margin-right: -20px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.wrapper .sidebar .custom-menu .btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #6749b9 !important;
+    border-color: #6749b9 !important;
+}
+
+.wrapper .sidebar .logo-h1 {
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+.wrapper .sidebar .logo-h1 a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.wrapper .sidebar ul.components {
+    padding: 0;
+}
+.wrapper .sidebar ul li {
+   font-size: 16px;
+   font-weight: 600;
+}
+.wrapper .sidebar ul li a {
+    padding: 10px 0;
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}
+.wrapper .sidebar ul li a::after {
+  float: right;
+  margin-top: 10px;
+}
+.wrapper .sidebar ul li > ul {
+    margin-left: 10px;
+}
+
+
+.wrapper.collapse .sidebar {
+  margin-left: -250px;
+}
+.wrapper.collapse .custom-menu {
+  margin-right: -50px;
+}
+.wrapper .custom-menu button:focus{
+  box-shadow: unset !important;
+}
+.form-control {
+    height: 40px !important;
+    background: #fff;
+    color: #000;
+    font-size: 13px;
+    border-radius: 4px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: transparent;
+}
+
+.wrapper .main_container {
+  margin-left: 260px;
+  padding: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.wrapper.collapse .main_container {
+  margin-left: 50px;
+
+}
+
+.wrapper .main_container .bg_layout {
+  background-color: #2e4ead;
+  padding: 15px;
+  border-radius: 15px;
+}
+.wrapper .main_container .bg_layout .bg_inner_layout {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 15px;
+}
+/* scroll */
+
+.scroll-wrapper {
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: relative;
+}
+
+.scroll-wrapper > .scroll-content {
+  border: none !important;
+  box-sizing: content-box !important;
+  height: auto;
+  left: 0;
+  margin: 0;
+  max-height: none;
+  max-width: none !important;
+  overflow: scroll !important;
+  padding: 0;
+  position: relative !important;
+  top: 0;
+  width: auto !important;
+}
+
+.scroll-wrapper > .scroll-content::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+
+.scroll-element {
+  display: none;
+}
+.scroll-element,
+.scroll-element div {
+  box-sizing: content-box;
+}
+
+.scroll-element.scroll-x.scroll-scrollx_visible,
+.scroll-element.scroll-y.scroll-scrolly_visible {
+  display: block;
+}
+
+.scroll-element .scroll-bar,
+.scroll-element .scroll-arrow {
+  cursor: default;
+}
+
+.scroll-textarea {
+  border: 1px solid #cccccc;
+  border-top-color: #999999;
+}
+.scroll-textarea > .scroll-content {
+  overflow: hidden !important;
+}
+.scroll-textarea > .scroll-content > textarea {
+  border: none !important;
+  box-sizing: border-box;
+  height: 100% !important;
+  margin: 0;
+  max-height: none !important;
+  max-width: none !important;
+  overflow: scroll !important;
+  outline: none;
+  padding: 2px;
+  position: relative !important;
+  top: 0;
+  width: 100% !important;
+}
+.scroll-textarea > .scroll-content > textarea::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+
+/*************** SIMPLE INNER SCROLLBAR ***************/
+
+.scrollbar-inner > .scroll-element,
+.scrollbar-inner > .scroll-element div {
+  border: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 10;
+}
+
+.scrollbar-inner > .scroll-element div {
+  display: block;
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.scrollbar-inner > .scroll-element.scroll-x {
+  bottom: 2px;
+  height: 8px;
+  left: 0;
+  width: 100%;
+}
+
+.scrollbar-inner > .scroll-element.scroll-y {
+  height: 100%;
+  right: 2px;
+  top: 0;
+  width: 8px;
+}
+
+.scrollbar-inner > .scroll-element .scroll-element_outer {
+  overflow: hidden;
+}
+
+.scrollbar-inner > .scroll-element .scroll-element_outer,
+.scrollbar-inner > .scroll-element .scroll-element_track,
+.scrollbar-inner > .scroll-element .scroll-bar {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.scrollbar-inner > .scroll-element .scroll-element_track,
+.scrollbar-inner > .scroll-element .scroll-bar {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
+  opacity: 0.4;
+}
+
+.scrollbar-inner > .scroll-element .scroll-element_track {
+  background-color: #e0e0e0;
+}
+.scrollbar-inner > .scroll-element .scroll-bar {
+  background-color: #c2c2c2;
+}
+.scrollbar-inner > .scroll-element:hover .scroll-bar {
+  background-color: #919191;
+}
+.scrollbar-inner > .scroll-element.scroll-draggable .scroll-bar {
+  background-color: #919191;
+}
+
+/* update scrollbar offset if both scrolls are visible */
+
+.scrollbar-inner
+  > .scroll-element.scroll-x.scroll-scrolly_visible
+  .scroll-element_track {
+  left: -12px;
+}
+.scrollbar-inner
+  > .scroll-element.scroll-y.scroll-scrollx_visible
+  .scroll-element_track {
+  top: -12px;
+}
+
+.scrollbar-inner
+  > .scroll-element.scroll-x.scroll-scrolly_visible
+  .scroll-element_size {
+  left: -12px;
+}
+.scrollbar-inner
+  > .scroll-element.scroll-y.scroll-scrollx_visible
+  .scroll-element_size {
+  top: -12px;
+}
+
+/* ========================= */
+
+.drop-box {
+  background: #f8f8f8;
+  border: 5px dashed #ddd;
+  width: 200px;
+  height: 65px;
+  text-align: center;
+  padding-top: 25px;
+  margin: 10px;
+}
+.dragover {
+  border: 5px dashed blue;
+}
+.json_danger {
+  border: 5px dashed #dc3545;
+}
+.json_true {
+  border: 5px dashed #ddd;
+}
+
+.border_none {
+  border: none;
+}

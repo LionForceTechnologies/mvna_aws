@@ -1,0 +1,4 @@
+/database/page
+.env
+/node_modules
+/public/uploads
