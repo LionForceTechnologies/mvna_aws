@@ -124,12 +124,12 @@ const index = (req, res)=>{
 
             if (id && id !="") {
             element.updated_by = 1;
-            var sql = `UPDATE ${table_name} SET name = '${element.name}',icon = '${element.icon}',text = '${element.text}',link = '${element.link}',lat = '${element.lat}',lon = '${element.lon}',country = '${element.country}', updated_by = ${element.updated_by} WHERE id = ${id}`;
+            var sql = `UPDATE ${table_name} SET name = "${element.name}",icon = "${element.icon}",text = "${element.text}",link = "${element.link}",lat = "${element.lat}",lon = "${element.lon}",country = "${element.country}", updated_by = ${element.updated_by} WHERE id = ${id}`;
             var message = "Update";
           } else { 
             element.status=config.get('status.active');
             element.created_by = 1;
-            var sql = `INSERT INTO ${table_name} (name,icon,text,link,lat,lon,country,status,created_by) VALUES ('${element.name}','${element.icon}','${element.text}','${element.link}','${element.lat}','${element.lon}','${element.country}',${element.status},${element.created_by})`;
+            var sql = `INSERT INTO ${table_name} (name,icon,text,link,lat,lon,country,status,created_by) VALUES ("${element.name}","${element.icon}","${element.text}","${element.link}","${element.lat}","${element.lon}","${element.country}",${element.status},${element.created_by})`;
             var message = "Created";
           }
         

@@ -68,11 +68,11 @@ const index = (req, res)=>{
    
     upload(req, res, function(err) {
       if (req.fileValidationError) {
-         res.send(req.fileValidationError);
+          res.send(req.fileValidationError,'1');
       }else if (err instanceof multer.MulterError) {
           res.send(err);
       }else if (err){
-          res.send(err);
+          res.send(err,'2');
       }
       
       var id = req.body.id;
@@ -163,7 +163,7 @@ const index = (req, res)=>{
     
       const JoiSchema = Joi.object({ 
         name : Joi.string().required(),
-        icon : Joi.string(),
+        icon : Joi.string().allow('', null),
         link : Joi.string().required(),
         id   : Joi.number().required()
     });
@@ -174,7 +174,7 @@ const index = (req, res)=>{
    validatelink = (user)=>{
     const JoiSchema = Joi.object({ 
         name : Joi.string().required(),
-        icon : Joi.string(),
+        icon : Joi.string().allow('', null),
         link : Joi.string().required(),
   }).options({ abortEarly: false }); 
 
