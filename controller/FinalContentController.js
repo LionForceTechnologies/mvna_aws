@@ -6,6 +6,7 @@ var Joi = require('@hapi/joi');
 // const { join } = require('path');
 const fs = require('fs');
 const path = require("path");
+const striptags = require('striptags');
 
 // ====================index(get values)================================
 
@@ -148,6 +149,42 @@ const create = async (req, res) => {
     }
   });
   // } 
+};
+
+const globalSearch = async(req,res)=>{
+ 
+  let searchstr = req.params.search;
+  console.log(searchstr);
+  var data = `select web_html,menu_id from ${table_name} where web_html like '%${searchstr}%' order by id desc limit 10`;
+  //var data = `select web_html,menu_id from ${table_name}   order by id desc limit 3`;
+  //console.log(data);
+
+  Database.getDb().query(data, function(err, result) {
+    if (err) {
+        res.status(500).send(err);
+    } else {      
+ 
+      //data2 = striptags(result[0]['web_html']);
+      data2 =[];
+      menu = []; 
+      for(i=0;i<result.length;i++) {
+      //console.log(striptags(result[i]['web_html']));
+      //console.log('------------------------------------');
+      
+      //if(n===true) { n="hi"; }
+      var str = striptags(result[i]['web_html']);           
+      //var n = str.startsWith(searchstr.toLowerCase);
+        data2.push(str);
+        menu.push(result[i]['menu_id']);
+      }
+    
+      
+      var result_data = {'status':'success','total_count': result.length, 'data':data2,'menu':menu};
+      res.status(200).json(result_data);
+    } 
+  });
+
+
 };
 // =============================custom ============================
 
@@ -472,7 +509,7 @@ validatePage = (user) => {
   return JoiSchema.validate(user)
 }
 // ==========================
-module.exports = { index,create,home,show,get_page,edit,update,custom,statusChange,customcreate }
+module.exports = { index,create,home,show,get_page,edit,update,custom,statusChange,customcreate,globalSearch}
 
 
 

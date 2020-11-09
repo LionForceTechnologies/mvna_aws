@@ -63,6 +63,8 @@ router.get("/get_page/:id", require('../controller/FinalContentController').get_
 
 router.get("/twitter", require('../controller/TwitterController').index); //save & Update
 
+router.get("/search/:search", require('../controller/FinalContentController').globalSearch); //search globally
+
 
 router.get('/run',(req,res)=>{
     res.render('index')
